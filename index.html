@@ -36,20 +36,35 @@
         a:hover {
             text-decoration: underline;
         }
+        .cheese {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            width: 30px;
+            z-index: 2;
+        }
         .rat {
             position: absolute;
             bottom: 0;
             left: -50px;
             width: 50px;
+            z-index: 1;
         }
-        @keyframes ratPop {
-            0%, 100% { left: -50px; opacity: 0; }
-            25% { left: 0; opacity: 1; }
-            50% { left: 50px; opacity: 1; }
-            75% { left: 0; opacity: 1; }
+        @keyframes ratMove {
+            0%, 100% { left: -50px; opacity: 0;}
+            25% { left: 50px; opacity: 1;}
+            50% { left: 50px; opacity: 1;}
+            75% { left: -50px; }
+        }
+        @keyframes cheeseMove {
+            0%, 50% { left: 50px; opacity: 1;}
+            75%, 100% { left: -50px; opacity: 0;}
         }
         .rat-animated {
-            animation: ratPop 10s infinite;
+            animation: ratMove 10s infinite;
+        }
+        .cheese-animated {
+            animation: cheeseMove 10s infinite;
         }
     </style>
 </head>
@@ -59,7 +74,8 @@
         <p>Our website is currently under construction.</p>
         <p>Stay tuned for something amazing! 💖</p>
         <p>Follow us on <a href="https://www.instagram.com/bitsyfriendsstudio" target="_blank">Instagram</a> for updates.</p>
-        <img src="IMG_2003.png" alt="Cute Rat" class="rat rat-animated">
+        <img src="cheese.png" alt="Block of Cheese" class="cheese cheese-animated">
+        <img src="rat.png" alt="Cute Rat" class="rat rat-animated">
     </div>
 </body>
 </html>
