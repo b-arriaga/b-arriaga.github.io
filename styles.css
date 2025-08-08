@@ -1,0 +1,61 @@
+/* Styles for the temporary landing page while the site is under construction */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fbe2e4;
+  color: #333;
+  font-family: "forma-djr-micro", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.container {
+  text-align: center;
+  background-color: #ffffff;
+  border: 3px solid #e96891;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: "adobe-caslon-pro", serif;
+  font-weight: 700;
+  font-style: italic;
+  color: #e96891;
+  font-size: clamp(2rem, 8vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.portfolio-link {
+  display: inline-block;
+  font-family: "adobe-caslon-pro", serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  color: #e96891;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.portfolio-link:hover,
+.portfolio-link:focus {
+  color: #c9547b;
+  border-color: #c9547b;
+}
