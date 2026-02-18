@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bellissima Arriaga-Pattillo | Inventor Relations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --off-white: #F5F5F5;
+        --ink-black: #1A1A1A;
+        --vibrant-pink: #ff4791;
+        /* Using the accent color for both primary and vibrant highlights as per request */
+        --accent: #ff4791; 
+      }
+      
+      body {
+        background-color: var(--off-white);
+        color: var(--ink-black);
+        overflow-x: hidden;
+      }
+
+      .font-massive {
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: -0.02em;
+        line-height: 0.85;
+      }
+
+      .font-mono-bold {
+        font-family: 'Courier Prime', monospace;
+        font-weight: 700;
+      }
+
+      .paper-texture {
+        background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+      }
+
+      .riso-text {
+        text-shadow: 2px 2px 0px var(--vibrant-pink);
+      }
+
+      .riso-border {
+        box-shadow: 4px 4px 0px var(--vibrant-pink);
+      }
+
+      .brutal-grid {
+        background-image: linear-gradient(to right, #ccc 1px, transparent 1px),
+                          linear-gradient(to bottom, #ccc 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+
+      /* Accessibility: Skip to Content */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--vibrant-pink);
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.2s;
+        font-family: 'Courier Prime', monospace;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+      /* Accessibility: Visible Focus States */
+      *:focus-visible {
+        outline: 3px solid var(--vibrant-pink) !important;
+        outline-offset: 4px;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--off-white);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--ink-black);
+        border: 3px solid var(--off-white);
+      }
+    </style>
+<link rel="stylesheet" href="/index.css">
+  <script type="module" crossorigin src="./assets/index-7-l7bCfR.js"></script>
+</head>
+  <body class="paper-texture">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="root"></div>
+</body>
+</html>
