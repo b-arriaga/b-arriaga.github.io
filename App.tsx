@@ -62,7 +62,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "Bitsy Rats",
     subtitle: "Brand Building and Content Strategy",
     description: "Orchestrating a multi-channel brand launch for character-driven collectibles. Focused on world building, the unboxing experience, and character-centric storytelling.",
-    longDescription: "Bitsy Rats was an exercise in building a miniatures brand with maximum personality. The Bitsy Rat character, buyer community, and unboxing moment create attachment and collectability. Numerous prototype rounds helped develop recognizable forms, standardized scale, and cohesive visuals. Packaging concepts were devloped alongside the product to create an intentional reveal moment. The result is character-led collectibles that can scale through new themes, sizes, materials and formats. In recent developments, a puppet version of the Bitsy Rat serves as the face of the Bitsy Friends Studio brand and helps deliver more of the content pillars of the brand such as creative confidence, maker education, and studio safety.",
+    longDescription: "Bitsy Rats was an exercise in building a miniatures brand with maximum personality. The Bitsy Rat character, buyer community, and unboxing moment create attachment and collectability. Numerous prototype rounds helped develop recognizable forms, standardized scale, and cohesive visuals. Packaging concepts were developed alongside the product to create an intentional reveal moment. The result is character-led collectibles that can scale through new themes, sizes, materials and formats. In recent developments, a puppet version of the Bitsy Rat serves as the face of the Bitsy Friends Studio brand and helps deliver more of the content pillars of the brand such as creative confidence, maker education, and studio safety.",
     brief: "Develop a cohesive brand identity and multi-platform content strategy for a new line of miniature character collectibles aimed at trinket lovers and creatives.",
     solution: "A character-first approach using puppets, miniatures, storytelling, and high-frequency community engagement that turned customers into loyal fans.",
     tags: ["Content Strategy", "Toy Design","Character Development","Prototyping","Packaging"],
@@ -87,7 +87,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "Urban TXT",
     subtitle: "Maker Culture and Inventor Support",
     description: "Building an accessible, welcoming makerspace environment and programming for South Central LA students. Mentoring youth teams on their inventions and supporting their product development and investor pitches.",
-    longDescription: "At Urban TXT, the mission was to democratize the tools of invention. This meant transforming a former bookstore into a learning lab that local teens would feel confident enough to utilize. Tool selection, space design, and programming in the space were approached from a user-first perspective and by balancing operations and culture, we created safety and structure while still nuturing creativity and experimentation. In the first summer after the space opened, 60 high school teens entered the Summer Coding Leadership Academy and the students were able to use the makerspace to support their projects. The space's flexible design allowed for it to be used as a workshop space, a classroom, drop-in tech support, and meeting space for the student teams to work out their solutions together.",
+    longDescription: "At Urban TXT, the mission was to democratize the tools of invention. This meant transforming a former bookstore into a learning lab that local teens would feel confident enough to utilize. Tool selection, space design, and programming in the space were approached from a user-first perspective and by balancing operations and culture, we created safety and structure while still nurturing creativity and experimentation. In the first summer after the space opened, 60 high school teens entered the Summer Coding Leadership Academy and the students were able to use the makerspace to support their projects. The space's flexible design allowed for it to be used as a workshop space, a classroom, drop-in tech support, and meeting space for the student teams to work out their solutions together.",
     brief: "Scale a youth-focused makerspace and design a curriculum that empowers underrepresented teens to explore engineering, coding, and hands-on making through experimentation.",
     solution: "A drop-in makerspace with flexible space arrangements to support various styles of learning and project types.",
     tags: ["Makerspace", "Management","Space Design", "Creative Confidence","Inventor Support"],
@@ -105,17 +105,19 @@ const CASE_STUDIES: CaseStudy[] = [
       "/images/case_studies/urban_txt/urbantxt_2jpeg.webp",
       "/images/case_studies/urban_txt/urbantxt_3.webp",
       "/images/case_studies/urban_txt/urbantxt_4.webp",
-      "/images/case_studies/urban_txt/urbantxt_5.webp"
+      "/images/case_studies/urban_txt/urbantxt_5.webp",
+      "/images/case_studies/urban_txt/urbantxt_6.webp",
+      "/images/case_studies/urban_txt/urbantxt_7.webp"
     ]
   },
   {
     id: "play-mechanisms",
     title: "Play Mechanisms",
     subtitle: "Rapid Prototyping & Design Engineering",
-    description: "A mechanism-driven exploration of feedback loops through two prototype product both aimed at created tactile experiences but for very different audiences.",
+    description: "A mechanism-driven exploration of feedback loops through two prototype product both aimed at creating tactile experiences but for very different audiences.",
     longDescription: "These prototypes study what makes a product feel alive and playful though physical motion and interactive features. Petal Planet investigated how a simple movement like a wobble could delight users and create moments of pause or reflection. The dog toy explores how patterned interactions with light cues and rewards could create a feedback loop to keep dogs interested in the toy for longer. Both concepts were approached as systems where a cue would prompt the user to interact with the product on a repeatable basis. After the user experience was defined, form was developed through several rapid prototyping techniques like laser cutting, 3D printing, and hand sculpting. ",
-    brief: "Developing two separate products one for the kidult market and another for dog owners. Both products involved several round of iterations with instructors, stakeholders, and community surveys.",
-    solution: "Both products reached a working prototype status and were pitched to peers and stakeholders. The developed mechanisms, branding, and pitches helped support the products in acheiving their goals of captivating their users. ",
+    brief: "Developing two separate products one for the kidult market and another for dog owners. Both products involved several rounds of iterations with instructors, stakeholders, and community surveys.",
+    solution: "Both products reached a working prototype status and were pitched to peers and stakeholders. The developed mechanisms, branding, and pitches helped support the products in achieving their goals of captivating their users. ",
     tags: ["Design Engineering", "Prototyping", "Packaging", "Toy Design", "Branding"],
     color: "#ff4791",
     role: "Design Engineer",
@@ -130,7 +132,8 @@ const CASE_STUDIES: CaseStudy[] = [
       "/images/case_studies/play_mechanisms/play_mechanisms_1.webp",
       "/images/case_studies/play_mechanisms/play_mechanisms_2.webp",
       "/images/case_studies/play_mechanisms/play_mechanisms_3.webp",
-      "/images/case_studies/play_mechanisms/play_mechanisms_4.webp"
+      "/images/case_studies/play_mechanisms/play_mechanisms_4.webp",
+      "/images/case_studies/play_mechanisms/play_mechanisms_5.webp"
     ]
   }
 ];
