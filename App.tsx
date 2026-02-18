@@ -13,7 +13,8 @@ import {
   Search,
   ChevronLeft,
   ChevronRight,
-  X
+  X,
+  FileText
 } from 'lucide-react';
 
 // --- Constants & Types ---
@@ -51,6 +52,7 @@ interface Zine {
   title: string;
   color: string;
   pages: ZinePage[];
+  pdfSrc?: string;
 }
 
 const CASE_STUDIES: CaseStudy[] = [
@@ -136,6 +138,7 @@ const ZINES: Zine[] = [
     id: 1, 
     title: "Discovery of Third Spaces", 
     color: "#ff4791",
+    pdfSrc: "/zine_drafts/vol1_zine.pdf",
     pages: [
       {
         layout: 'cover',
@@ -186,13 +189,55 @@ const ZINES: Zine[] = [
       }
     ]
   },
-  { id: 2, title: "The Inventor Paradox", color: "#ff4791", pages: [] },
-  { id: 3, title: "Shelf Life Vol. 1", color: "#ff4791", pages: [] },
-  { id: 4, title: "Brutal Toymaking", color: "#ff4791", pages: [] },
-  { id: 5, title: "Mechanism Alpha", color: "#ff4791", pages: [] },
-  { id: 6, title: "Toxic Play", color: "#ff4791", pages: [] },
-  { id: 7, title: "Plastic Soul", color: "#ff4791", pages: [] },
-  { id: 8, title: "Future Retro", color: "#ff4791", pages: [] },
+  { 
+    id: 2, 
+    title: "The Inventor Paradox", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol2_zine.pdf",
+    pages: [] 
+  },
+  { 
+    id: 3, 
+    title: "Shelf Life Vol. 1", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol3_zine.pdf",
+    pages: [] 
+  },
+  { 
+    id: 4, 
+    title: "Brutal Toymaking", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol4_zine.pdf",
+    pages: [] 
+  },
+  { 
+    id: 5, 
+    title: "Mechanism Alpha", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol5_zine.pdf",
+    pages: [] 
+  },
+  { 
+    id: 6, 
+    title: "Toxic Play", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol6_zine.pdf",
+    pages: [] 
+  },
+  { 
+    id: 7, 
+    title: "Plastic Soul", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol7_zine.pdf",
+    pages: [] 
+  },
+  { 
+    id: 8, 
+    title: "Future Retro", 
+    color: "#ff4791", 
+    pdfSrc: "/zine_drafts/vol8_zine.pdf",
+    pages: [] 
+  },
   { id: 9, title: "The Lab Files", color: "#ff4791", pages: [] },
   { id: 10, title: "Pink Print", color: "#ff4791", pages: [] },
 ];
@@ -298,6 +343,7 @@ const ZineCover: React.FC<{ zine: Zine, onOpen: (id: number) => void }> = ({ zin
 const ZineViewer: React.FC<{ zine: Zine, onClose: () => void }> = ({ zine, onClose }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const shouldReduceMotion = useReducedMotion();
+  const hasPages = zine.pages && zine.pages.length > 0;
 
   return (
     <motion.div 
@@ -308,6 +354,17 @@ const ZineViewer: React.FC<{ zine: Zine, onClose: () => void }> = ({ zine, onClo
     >
       {/* Viewer Controls */}
       <div className="fixed top-6 right-6 z-[110] flex gap-4">
+        {zine.pdfSrc && (
+            <a
+              href={zine.pdfSrc}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1A1A1A] text-white p-3 hover:bg-[#ff4791] transition-colors riso-border flex items-center gap-2 font-mono-bold uppercase text-xs no-underline"
+              aria-label="Download PDF"
+            >
+              <FileText size={24} /> <span className="hidden md:inline">PDF View</span>
+            </a>
+        )}
         <button 
           onClick={onClose}
           className="bg-[#1A1A1A] text-white p-3 hover:bg-[#ff4791] transition-colors riso-border"
@@ -320,107 +377,137 @@ const ZineViewer: React.FC<{ zine: Zine, onClose: () => void }> = ({ zine, onClo
       <div className="min-h-screen flex flex-col items-center py-20 px-4 md:px-12">
         <div className="w-full max-w-6xl">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPage}
-              initial={shouldReduceMotion ? { opacity: 0 } : { y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { y: -20, opacity: 0 }}
-              className="bg-white border-4 border-[#1A1A1A] riso-border min-h-[85vh] shadow-2xl overflow-hidden"
-            >
-              {zine.pages[currentPage]?.layout === 'cover' && (
-                <div className="flex flex-col md:flex-row h-full min-h-[85vh]">
-                  <div className="w-full md:w-5/12 bg-[#ff4791] p-12 flex flex-col justify-between border-r-4 border-[#1A1A1A]">
-                    <h1 className="font-massive text-7xl md:text-8xl text-[#1A1A1A] leading-tight uppercase">
-                      {zine.pages[currentPage].title}
-                    </h1>
-                    <div className="space-y-4">
-                      <div className="font-mono-bold text-4xl text-[#1A1A1A]">{zine.pages[currentPage].subtitle}</div>
-                      <div className="font-mono-bold text-lg text-[#1A1A1A]">BELLISSIMA ARRIAGA-PATTILLO</div>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-7/12 p-12 bg-white flex flex-col">
-                    <div className="mb-12">
-                       <span className="bg-[#ff4791] text-[#1A1A1A] font-massive text-6xl px-2 uppercase leading-none inline-block">THE PROBLEM</span>
-                    </div>
-                    <p className="font-mono-bold text-2xl mb-12 text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[0]}</p>
-                    <div className="grid grid-cols-2 gap-8 mb-12">
-                      <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[1]}</p>
-                      <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[2]}</p>
-                    </div>
-                    <div className="mt-auto flex justify-center opacity-30">
-                       <img src="https://raw.githubusercontent.com/ai-can-help/images/main/third-spaces-cup.png" alt="Cup illustration" className="w-64 grayscale mix-blend-multiply" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {zine.pages[currentPage]?.layout === 'standard' && (
-                <div className="flex flex-col md:flex-row h-full min-h-[85vh]">
-                  <div className="flex-1 p-12 bg-white relative">
-                    <header className="mb-12">
-                       <span className="bg-[#ff4791] text-[#1A1A1A] font-massive text-6xl px-2 uppercase leading-none inline-block">{zine.pages[currentPage].title}</span>
-                    </header>
-                    <p className="font-mono-bold text-xl mb-12 text-[#1A1A1A]">{zine.pages[currentPage].bodyTop}</p>
-                    <div className="grid grid-cols-2 gap-8">
-                       <div className="space-y-12">
-                          <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[0]}</p>
-                          <div className="w-48 h-48 bg-[#ff4791] riso-border" />
-                          <div className="font-mono-bold text-xs uppercase text-[#1A1A1A]">Just enough space here for seven words</div>
-                       </div>
-                       <div className="space-y-12 pt-24">
-                          <div className="w-full h-64 bg-[#ff4791] riso-border" />
-                          <div className="font-mono-bold text-xs uppercase text-[#1A1A1A]">Just enough space here for seven words</div>
-                       </div>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-3/12 bg-[#ff4791]/30 p-12 border-l-4 border-[#1A1A1A] space-y-24">
-                    {zine.pages[currentPage].sidePanel?.map((p, i) => (
-                      <p key={i} className="font-mono-bold text-base text-[#1A1A1A]">{p}</p>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {zine.pages[currentPage]?.layout === 'opportunity' && (
-                <div className="flex flex-col md:flex-row h-full min-h-[85vh]">
-                   <div className="w-full md:w-7/12 p-12 bg-white">
-                      <header className="mb-12">
-                        <span className="bg-[#ff4791] text-[#1A1A1A] font-massive text-6xl px-2 uppercase leading-none inline-block">{zine.pages[currentPage].title}</span>
-                      </header>
-                      <p className="font-mono-bold text-2xl mb-12 text-[#1A1A1A]">{zine.pages[currentPage].bodyTop}</p>
-                      <div className="bg-[#ff4791]/50 p-6 border-2 border-[#1A1A1A] riso-border">
-                        <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[0]}</p>
+            {hasPages ? (
+              <motion.div
+                key={currentPage}
+                initial={shouldReduceMotion ? { opacity: 0 } : { y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { y: -20, opacity: 0 }}
+                className="bg-white border-4 border-[#1A1A1A] riso-border min-h-[85vh] shadow-2xl overflow-hidden"
+              >
+                {zine.pages[currentPage]?.layout === 'cover' && (
+                  <div className="flex flex-col md:flex-row h-full min-h-[85vh]">
+                    <div className="w-full md:w-5/12 bg-[#ff4791] p-12 flex flex-col justify-between border-r-4 border-[#1A1A1A]">
+                      <h1 className="font-massive text-7xl md:text-8xl text-[#1A1A1A] leading-tight uppercase">
+                        {zine.pages[currentPage].title}
+                      </h1>
+                      <div className="space-y-4">
+                        <div className="font-mono-bold text-4xl text-[#1A1A1A]">{zine.pages[currentPage].subtitle}</div>
+                        <div className="font-mono-bold text-lg text-[#1A1A1A]">BELLISSIMA ARRIAGA-PATTILLO</div>
                       </div>
-                   </div>
-                   <div className="flex-1 bg-[#ff4791]/40 p-12 border-l-4 border-[#1A1A1A] flex flex-col justify-between">
-                      <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[1]}</p>
-                      <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[2]}</p>
-                   </div>
-                </div>
-              )}
-            </motion.div>
+                    </div>
+                    <div className="w-full md:w-7/12 p-12 bg-white flex flex-col">
+                      <div className="mb-12">
+                         <span className="bg-[#ff4791] text-[#1A1A1A] font-massive text-6xl px-2 uppercase leading-none inline-block">THE PROBLEM</span>
+                      </div>
+                      <p className="font-mono-bold text-2xl mb-12 text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[0]}</p>
+                      <div className="grid grid-cols-2 gap-8 mb-12">
+                        <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[1]}</p>
+                        <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[2]}</p>
+                      </div>
+                      <div className="mt-auto flex justify-center opacity-30">
+                         <img src="https://raw.githubusercontent.com/ai-can-help/images/main/third-spaces-cup.png" alt="Cup illustration" className="w-64 grayscale mix-blend-multiply" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {zine.pages[currentPage]?.layout === 'standard' && (
+                  <div className="flex flex-col md:flex-row h-full min-h-[85vh]">
+                    <div className="flex-1 p-12 bg-white relative">
+                      <header className="mb-12">
+                         <span className="bg-[#ff4791] text-[#1A1A1A] font-massive text-6xl px-2 uppercase leading-none inline-block">{zine.pages[currentPage].title}</span>
+                      </header>
+                      <p className="font-mono-bold text-xl mb-12 text-[#1A1A1A]">{zine.pages[currentPage].bodyTop}</p>
+                      <div className="grid grid-cols-2 gap-8">
+                         <div className="space-y-12">
+                            <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[0]}</p>
+                            <div className="w-48 h-48 bg-[#ff4791] riso-border" />
+                            <div className="font-mono-bold text-xs uppercase text-[#1A1A1A]">Just enough space here for seven words</div>
+                         </div>
+                         <div className="space-y-12 pt-24">
+                            <div className="w-full h-64 bg-[#ff4791] riso-border" />
+                            <div className="font-mono-bold text-xs uppercase text-[#1A1A1A]">Just enough space here for seven words</div>
+                         </div>
+                      </div>
+                    </div>
+                    <div className="w-full md:w-3/12 bg-[#ff4791]/30 p-12 border-l-4 border-[#1A1A1A] space-y-24">
+                      {zine.pages[currentPage].sidePanel?.map((p, i) => (
+                        <p key={i} className="font-mono-bold text-base text-[#1A1A1A]">{p}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {zine.pages[currentPage]?.layout === 'opportunity' && (
+                  <div className="flex flex-col md:flex-row h-full min-h-[85vh]">
+                     <div className="w-full md:w-7/12 p-12 bg-white">
+                        <header className="mb-12">
+                          <span className="bg-[#ff4791] text-[#1A1A1A] font-massive text-6xl px-2 uppercase leading-none inline-block">{zine.pages[currentPage].title}</span>
+                        </header>
+                        <p className="font-mono-bold text-2xl mb-12 text-[#1A1A1A]">{zine.pages[currentPage].bodyTop}</p>
+                        <div className="bg-[#ff4791]/50 p-6 border-2 border-[#1A1A1A] riso-border">
+                          <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[0]}</p>
+                        </div>
+                     </div>
+                     <div className="flex-1 bg-[#ff4791]/40 p-12 border-l-4 border-[#1A1A1A] flex flex-col justify-between">
+                        <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[1]}</p>
+                        <p className="font-mono-bold text-base text-[#1A1A1A]">{zine.pages[currentPage].bodyCols?.[2]}</p>
+                     </div>
+                  </div>
+                )}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white border-4 border-[#1A1A1A] riso-border min-h-[50vh] flex flex-col items-center justify-center p-12 text-center"
+              >
+                 <div className="font-massive text-8xl mb-4 text-[#1A1A1A] opacity-20">RESTRICTED ACCESS</div>
+                 <h2 className="font-massive text-6xl mb-8 text-[#1A1A1A]">Digital View Unavailable</h2>
+                 <p className="font-mono-bold text-xl mb-12 max-w-lg text-[#1A1A1A]">
+                   The interactive version of "{zine.title}" is currently archived. You can view the full issue by downloading the PDF below.
+                 </p>
+                 {zine.pdfSrc && (
+                   <a 
+                    href={zine.pdfSrc} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="group relative inline-block focus:outline-none"
+                   >
+                      <div className="absolute inset-0 bg-[#ff4791] translate-x-2 translate-y-2 transition-transform group-hover:translate-x-3 group-hover:translate-y-3" />
+                      <div className="relative border-2 border-[#1A1A1A] bg-white text-[#1A1A1A] px-8 py-4 font-mono-bold uppercase text-lg hover:bg-[#1A1A1A] hover:text-white transition-colors flex items-center gap-3">
+                        <FileText size={24} /> Access PDF Archival
+                      </div>
+                   </a>
+                 )}
+              </motion.div>
+            )}
           </AnimatePresence>
 
-          {/* Pagination Controls */}
-          <div className="mt-12 flex justify-between items-center bg-[#1A1A1A] p-6 riso-border text-white">
-            <button 
-              disabled={currentPage === 0}
-              onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
-              className="flex items-center gap-2 font-mono-bold uppercase text-xs hover:text-[#ff4791] disabled:opacity-20 transition-colors"
-            >
-              <ChevronLeft size={20} /> Prev Page
-            </button>
-            <div className="font-massive text-3xl tracking-widest">
-              PAGE {currentPage + 1} / {zine.pages.length}
+          {/* Pagination Controls - Only show if has pages */}
+          {hasPages && (
+            <div className="mt-12 flex justify-between items-center bg-[#1A1A1A] p-6 riso-border text-white">
+              <button 
+                disabled={currentPage === 0}
+                onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
+                className="flex items-center gap-2 font-mono-bold uppercase text-xs hover:text-[#ff4791] disabled:opacity-20 transition-colors"
+              >
+                <ChevronLeft size={20} /> Prev Page
+              </button>
+              <div className="font-massive text-3xl tracking-widest">
+                PAGE {currentPage + 1} / {zine.pages.length}
+              </div>
+              <button 
+                disabled={currentPage === zine.pages.length - 1}
+                onClick={() => setCurrentPage(p => Math.min(zine.pages.length - 1, p + 1))}
+                className="flex items-center gap-2 font-mono-bold uppercase text-xs hover:text-[#ff4791] disabled:opacity-20 transition-colors"
+              >
+                Next Page <ChevronRight size={20} />
+              </button>
             </div>
-            <button 
-              disabled={currentPage === zine.pages.length - 1}
-              onClick={() => setCurrentPage(p => Math.min(zine.pages.length - 1, p + 1))}
-              className="flex items-center gap-2 font-mono-bold uppercase text-xs hover:text-[#ff4791] disabled:opacity-20 transition-colors"
-            >
-              Next Page <ChevronRight size={20} />
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </motion.div>
