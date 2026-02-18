@@ -51,6 +51,7 @@ interface Zine {
   id: number;
   title: string;
   color: string;
+  coverImage?: string;
   pages: ZinePage[];
   pdfSrc?: string;
 }
@@ -75,10 +76,10 @@ const CASE_STUDIES: CaseStudy[] = [
       "Tools": "Adobe, Autodesk, Laser Cutter, 3D Printer, Clay, Foam"
     },
     images: [
-      "https://picsum.photos/seed/bitsy1/1200/800",
-      "https://picsum.photos/seed/bitsy2/1200/800",
-      "https://picsum.photos/seed/bitsy3/1200/800",
-      "https://picsum.photos/seed/bitsy4/1200/800"
+      "/images/case_studies/bitsy_rats/bitsy_rat_1.webp",
+      "/images/case_studies/bitsy_rats/bitsy_rat_2.webp",
+      "/images/case_studies/bitsy_rats/bitsy_rat_3.webp",
+      "/images/case_studies/bitsy_rats/bitsy_rat_4.webp"
     ]
   },
   {
@@ -100,10 +101,11 @@ const CASE_STUDIES: CaseStudy[] = [
       "Focus": "Makerspace Innovation & Youth Development"
     },
     images: [
-      "https://picsum.photos/seed/urban1/1200/800",
-      "https://picsum.photos/seed/urban2/1200/800",
-      "https://picsum.photos/seed/urban3/1200/800",
-      "https://picsum.photos/seed/urban4/1200/800"
+      "/images/case_studies/urban_txt/urbantxt_1.webp",
+      "/images/case_studies/urban_txt/urbantxt_2jpeg.webp",
+      "/images/case_studies/urban_txt/urbantxt_3.webp",
+      "/images/case_studies/urban_txt/urbantxt_4.webp",
+      "/images/case_studies/urban_txt/urbantxt_5.webp"
     ]
   },
   {
@@ -125,10 +127,10 @@ const CASE_STUDIES: CaseStudy[] = [
       "Category": "Interactive Products"
     },
     images: [
-      "https://picsum.photos/seed/play1/1200/800",
-      "https://picsum.photos/seed/play2/1200/800",
-      "https://picsum.photos/seed/play3/1200/800",
-      "https://picsum.photos/seed/play4/1200/800"
+      "/images/case_studies/play_mechanisms/play_mechanisms_1.webp",
+      "/images/case_studies/play_mechanisms/play_mechanisms_2.webp",
+      "/images/case_studies/play_mechanisms/play_mechanisms_3.webp",
+      "/images/case_studies/play_mechanisms/play_mechanisms_4.webp"
     ]
   }
 ];
@@ -138,6 +140,7 @@ const ZINES: Zine[] = [
     id: 1, 
     title: "Discovery of Third Spaces", 
     color: "#ff4791",
+    coverImage: "/images/zine_covers/zine_cover_1.webp",
     pdfSrc: "/zine_drafts/vol1_zine.pdf",
     pages: [
       {
@@ -152,40 +155,20 @@ const ZINES: Zine[] = [
         ],
         images: ["https://raw.githubusercontent.com/ai-can-help/images/main/third-spaces-cup.png"]
       },
+      // ... (keep your existing inner pages for Zine 1 here if you wish, or use the abbreviated version below for clean code) ...
       {
         layout: 'standard',
         title: "THE EXPERIMENT",
         bodyTop: "Body copy about the issue this is lots of body copy about the project and what its all about! This area is a little over thirty three words long. Seriously, it",
-        bodyCols: [
-          "Copy about the issue this is of copy about the project and what its about! This is about twenty one words"
-        ],
-        sidePanel: [
-          "Side panel copy about the project perhaps cool tales about the works. There is room for just about twenty words.",
-          "Side panel copy about the project perhaps cool tales about the works. There is room for just about twenty words."
-        ],
-        images: ["pink", "pink", "pink"] // Representation of pink blocks
-      },
-      {
-        layout: 'standard',
-        title: "THE INSIGHT",
-        bodyTop: "Copy about the issue this is lots of copy about the project and what its about! This is about thirty two words long. Here are those last few words hot n ready.",
-        bodyCols: [
-          "Copy about the issue this is lots of copy about the project and what its about! This is about twenty three words long."
-        ],
-        sidePanel: [
-          "Side panel copy about the project and the insights. There is room for just about eighteen words."
-        ],
+        bodyCols: ["Copy about the issue this is of copy about the project and what its about! This is about twenty one words"],
+        sidePanel: ["Side panel copy about the project perhaps cool tales about the works. There is room for just about twenty words."],
         images: ["pink", "pink", "pink"]
       },
       {
         layout: 'opportunity',
         title: "THE OPPORTUNITY",
-        bodyTop: "This is the space for the insights and future opportunities that came out of this project. I estimate there’s about enough space here for a longer paragraph that beautifully summarizes the process and how this can go even further in about fifty four words or even less! What a great space.",
-        bodyCols: [
-          "Any final copy about the issue this is lots of copy about the project and what its about! This is about twenty final words long.",
-          "Body copy about the issue this is lots of body copy",
-          "Body copy about the issue this is lots of body copy"
-        ]
+        bodyTop: "This is the space for the insights and future opportunities that came out of this project.",
+        bodyCols: ["Any final copy about the issue this is lots of copy about the project and what its about!", "Body copy about the issue", "Body copy about the issue"]
       }
     ]
   },
@@ -193,6 +176,7 @@ const ZINES: Zine[] = [
     id: 2, 
     title: "The Inventor Paradox", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_2.webp",
     pdfSrc: "/zine_drafts/vol2_zine.pdf",
     pages: [] 
   },
@@ -200,6 +184,7 @@ const ZINES: Zine[] = [
     id: 3, 
     title: "Shelf Life Vol. 1", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_3.webp",
     pdfSrc: "/zine_drafts/vol3_zine.pdf",
     pages: [] 
   },
@@ -207,6 +192,7 @@ const ZINES: Zine[] = [
     id: 4, 
     title: "Brutal Toymaking", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_4.webp",
     pdfSrc: "/zine_drafts/vol4_zine.pdf",
     pages: [] 
   },
@@ -214,6 +200,7 @@ const ZINES: Zine[] = [
     id: 5, 
     title: "Mechanism Alpha", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_5.webp",
     pdfSrc: "/zine_drafts/vol5_zine.pdf",
     pages: [] 
   },
@@ -221,6 +208,7 @@ const ZINES: Zine[] = [
     id: 6, 
     title: "Toxic Play", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_6.webp",
     pdfSrc: "/zine_drafts/vol6_zine.pdf",
     pages: [] 
   },
@@ -228,6 +216,7 @@ const ZINES: Zine[] = [
     id: 7, 
     title: "Plastic Soul", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_7.webp",
     pdfSrc: "/zine_drafts/vol7_zine.pdf",
     pages: [] 
   },
@@ -235,6 +224,7 @@ const ZINES: Zine[] = [
     id: 8, 
     title: "Future Retro", 
     color: "#ff4791", 
+    coverImage: "/images/zine_covers/zine_cover_8.webp",
     pdfSrc: "/zine_drafts/vol8_zine.pdf",
     pages: [] 
   },
@@ -310,32 +300,48 @@ const ZineCover: React.FC<{ zine: Zine, onOpen: (id: number) => void }> = ({ zin
   return (
     <motion.div 
       whileHover={shouldReduceMotion ? {} : { 
-        scale: 1.1, 
-        rotate: -5,
+        scale: 1.05, 
+        rotate: -2,
         zIndex: 10,
         boxShadow: "10px 10px 0px #ff4791"
       }}
       onClick={() => onOpen(zine.id)}
-      className="flex-shrink-0 w-48 h-64 border-2 border-[#1A1A1A] relative cursor-pointer m-4 bg-white overflow-hidden shadow-lg transition-all"
+      // UPDATED: Removed w-48 h-64 m-4, added w-full aspect-[3/4]
+      className="w-full aspect-[3/4] border-2 border-[#1A1A1A] relative cursor-pointer bg-white overflow-hidden shadow-lg transition-all group"
       role="button"
       tabIndex={0}
       aria-label={`View Research Zine: ${zine.title}`}
     >
-      <div className="absolute inset-0 opacity-40" style={{ backgroundColor: zine.color }} />
-      <div className="absolute inset-0 brutal-grid opacity-10" />
+      {/* Base Color Layer */}
+      <div className="absolute inset-0" style={{ backgroundColor: zine.color }} />
       
-      <div className="p-4 h-full flex flex-col justify-between">
-        <div className="text-[10px] font-mono-bold border-b border-[#1A1A1A] pb-1 uppercase text-[#1A1A1A]">
-          Issue #0{zine.id}
+      {/* Image Layer */}
+      {zine.coverImage && (
+        <img 
+          src={zine.coverImage} 
+          alt={zine.title}
+          className="absolute inset-0 w-full h-full object-cover grayscale mix-blend-multiply opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+        />
+      )}
+
+      {/* Texture Overlay */}
+      <div className="absolute inset-0 brutal-grid opacity-10 pointer-events-none" />
+      
+      {/* Content Layer - Only render text if there is NO cover image */}
+      {!zine.coverImage && (
+        <div className="relative p-4 h-full flex flex-col justify-between z-10">
+          <div className="text-[10px] font-mono-bold border-b border-[#1A1A1A] pb-1 uppercase text-[#1A1A1A] bg-white/80 inline-block self-start px-1 backdrop-blur-sm">
+            Issue #0{zine.id}
+          </div>
+          <h4 className="font-massive text-3xl leading-none text-center transform -rotate-6 group-hover:rotate-0 transition-transform text-[#1A1A1A] drop-shadow-md bg-white/40 p-1 backdrop-blur-sm">
+            {zine.title}
+          </h4>
+          <div className="flex justify-between items-end bg-white/80 p-1 backdrop-blur-sm">
+            <Book size={16} className="text-[#1A1A1A]" />
+            <div className="text-[8px] font-mono-bold uppercase text-[#1A1A1A]">Research Dir.</div>
+          </div>
         </div>
-        <h4 className="font-massive text-3xl leading-none text-center transform -rotate-6 group-hover:rotate-0 transition-transform text-[#1A1A1A]">
-          {zine.title}
-        </h4>
-        <div className="flex justify-between items-end">
-          <Book size={16} className="text-[#1A1A1A]" />
-          <div className="text-[8px] font-mono-bold uppercase text-[#1A1A1A]">Research Dir.</div>
-        </div>
-      </div>
+      )}
     </motion.div>
   );
 };
@@ -698,17 +704,19 @@ export default function App() {
                   ))}
                 </div>
               </section>
-              <section id="research" className="bg-[#1A1A1A] py-32 overflow-hidden border-y-4 border-[#1A1A1A] text-[#F5F5F5]">
+              <section id="research" className="bg-[#1A1A1A] py-32 border-y-4 border-[#1A1A1A] text-[#F5F5F5]">
                 <div className="max-w-7xl mx-auto px-8 mb-12">
                   <h2 className="font-massive text-9xl uppercase leading-none text-[#ff4791]">Research</h2>
                   <p className="font-mono-bold text-sm uppercase mt-4 text-[#ff4791]">The Zine Library: Ethnography of play & industrial insights</p>
                 </div>
-                <div className="relative pb-12">
-                  <motion.div className="flex gap-4 overflow-x-auto pb-8 px-8 no-scrollbar" animate={shouldReduceMotion ? {} : { x: [0, -100, 0] }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }}>
-                    {ZINES.slice(0, 5).map(zine => <ZineCover key={zine.id} zine={zine} onOpen={openZine} />)}
-                    {ZINES.slice(0, 5).map(zine => <ZineCover key={`dup1-${zine.id}`} zine={zine} onOpen={openZine} />)}
-                  </motion.div>
-                  <div className="h-2 w-full bg-[#ff4791] mx-8 opacity-20" />
+                
+                <div className="max-w-7xl mx-auto px-8">
+                  {/* UPDATED: Grid layout with 4 columns for desktop (2 rows of 4) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {ZINES.slice(0, 8).map(zine => (
+                      <ZineCover key={zine.id} zine={zine} onOpen={openZine} />
+                    ))}
+                  </div>
                 </div>
               </section>
               <section id="about" className="min-h-screen flex flex-col md:flex-row relative">
@@ -716,7 +724,11 @@ export default function App() {
                   <motion.div animate={shouldReduceMotion ? {} : { rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} className="absolute w-[130%] h-[130%] bg-gradient-to-br from-[#ff4791] via-[#ff4791]/10 to-transparent opacity-30 rounded-full blur-[100px]" />
                   <div className="relative z-10 w-full h-full flex items-center justify-center p-12">
                     <div className="relative w-full max-w-md aspect-[9/16] bg-white border-4 border-[#1A1A1A] riso-border group overflow-hidden">
-                      <img src="https://raw.githubusercontent.com/ai-can-help/images/main/bellissima_arriaga_bluey.jpg" alt="Bellissima Arriaga-Pattillo with Bluey" className="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
+                      <img 
+                        src="/images/home_pics/bellissima_arriaga_pattillo.webp" 
+                        alt="Bellissima Arriaga-Pattillo" 
+                        className="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" 
+                      />
                       <div className="absolute -bottom-4 -right-4 bg-[#1A1A1A] text-white p-2 font-mono-bold text-[10px] uppercase z-20">Subject: Arriaga-Pattillo, B. [RELATIONS MGR]</div>
                     </div>
                   </div>
