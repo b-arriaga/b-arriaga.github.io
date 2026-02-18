@@ -473,10 +473,10 @@ const ZineViewer: React.FC<{ zine: Zine, onClose: () => void }> = ({ zine, onClo
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-white border-4 border-[#1A1A1A] riso-border min-h-[50vh] flex flex-col items-center justify-center p-12 text-center"
               >
-                 <div className="font-massive text-8xl mb-4 text-[#1A1A1A] opacity-20">RESTRICTED ACCESS</div>
-                 <h2 className="font-massive text-6xl mb-8 text-[#1A1A1A]">Digital View Unavailable</h2>
+                 {/* REMOVED HEADERS HERE */}
+                 
                  <p className="font-mono-bold text-xl mb-12 max-w-lg text-[#1A1A1A]">
-                   The interactive version of "{zine.title}" is currently archived. You can view the full issue by downloading the PDF below.
+                   The interactive version of this zine is currently archived. You can view the full issue by downloading the PDF below.
                  </p>
                  {zine.pdfSrc && (
                    <a 
