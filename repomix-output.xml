@@ -82,6 +82,7 @@ public/
     vol6_zine.pdf
     vol7_zine.pdf
     vol8_zine.pdf
+  Arriaga_Bellissima_Resume.pdf
 .gitignore
 App.tsx
 CNAME
@@ -297,6 +298,10 @@ export default defineConfig(({ mode }) => {
 }
 </file>
 
+<file path="CNAME">
+www.bellissimaarriaga.com
+</file>
+
 <file path="App.tsx">
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from 'framer-motion';
@@ -314,7 +319,8 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  FileText
+  FileText,
+  Linkedin
 } from 'lucide-react';
 
 // --- Constants & Types ---
@@ -414,8 +420,8 @@ const CASE_STUDIES: CaseStudy[] = [
     id: "play-mechanisms",
     title: "Play Mechanisms",
     subtitle: "Rapid Prototyping & Design Engineering",
-    description: "A mechanism-driven exploration of feedback loops through two prototype product both aimed at creating tactile experiences but for very different audiences.",
-    longDescription: "These prototypes study what makes a product feel alive and playful though physical motion and interactive features. Petal Planet investigated how a simple movement like a wobble could delight users and create moments of pause or reflection. The dog toy explores how patterned interactions with light cues and rewards could create a feedback loop to keep dogs interested in the toy for longer. Both concepts were approached as systems where a cue would prompt the user to interact with the product on a repeatable basis. After the user experience was defined, form was developed through several rapid prototyping techniques like laser cutting, 3D printing, and hand sculpting. ",
+    description: "A mechanism-driven exploration of feedback loops through two product prototypes both aimed at creating tactile experiences but for very different audiences.",
+    longDescription: "These prototypes study what makes a product feel alive and playful through physical motion and interactive features. Petal Planet investigated how a simple movement like a wobble could delight users and create moments of pause or reflection. The dog toy explores how patterned interactions with light cues and rewards could create a feedback loop to keep dogs interested in the toy for longer. Both concepts were approached as systems where a cue would prompt the user to interact with the product on a repeatable basis. After the user experience was defined, form was developed through several rapid prototyping techniques like laser cutting, 3D printing, and hand sculpting. ",
     brief: "Developing two separate products one for the kidult market and another for dog owners. Both products involved several rounds of iterations with instructors, stakeholders, and community surveys.",
     solution: "Both products reached a working prototype status and were pitched to peers and stakeholders. The developed mechanisms, branding, and pitches helped support the products in achieving their goals of captivating their users. ",
     tags: ["Design Engineering", "Prototyping", "Packaging", "Toy Design", "Branding"],
@@ -445,35 +451,7 @@ const ZINES: Zine[] = [
     color: "#ff4791",
     coverImage: "/images/zine_covers/zine_cover_1.webp",
     pdfSrc: "/zine_drafts/vol1_zine.pdf",
-    pages: [
-      {
-        layout: 'cover',
-        title: "HOW CAN WE CENTRALIZE THE DISCOVERY OF THIRD SPACES?",
-        subtitle: "VOL. 1",
-        bodyTop: "THE PROBLEM",
-        bodyCols: [
-          "Here is where a main problem or concept will go. There is about room for seventeen words.",
-          "Body copy about the issue this is lots of body copy about the project and what its all about! This is about twenty six words long.",
-          "Body copy about the issue this is lots of body copy about the project and what its all about! This is about twenty six words long."
-        ],
-        images: ["https://raw.githubusercontent.com/ai-can-help/images/main/third-spaces-cup.png"]
-      },
-      // ... (keep your existing inner pages for Zine 1 here if you wish, or use the abbreviated version below for clean code) ...
-      {
-        layout: 'standard',
-        title: "THE EXPERIMENT",
-        bodyTop: "Body copy about the issue this is lots of body copy about the project and what its all about! This area is a little over thirty three words long. Seriously, it",
-        bodyCols: ["Copy about the issue this is of copy about the project and what its about! This is about twenty one words"],
-        sidePanel: ["Side panel copy about the project perhaps cool tales about the works. There is room for just about twenty words."],
-        images: ["pink", "pink", "pink"]
-      },
-      {
-        layout: 'opportunity',
-        title: "THE OPPORTUNITY",
-        bodyTop: "This is the space for the insights and future opportunities that came out of this project.",
-        bodyCols: ["Any final copy about the issue this is lots of copy about the project and what its about!", "Body copy about the issue", "Body copy about the issue"]
-      }
-    ]
+    pages: []
   },
   { 
     id: 2, 
@@ -530,9 +508,7 @@ const ZINES: Zine[] = [
     coverImage: "/images/zine_covers/zine_cover_8.webp",
     pdfSrc: "/zine_drafts/vol8_zine.pdf",
     pages: [] 
-  },
-  { id: 9, title: "The Lab Files", color: "#ff4791", pages: [] },
-  { id: 10, title: "Pink Print", color: "#ff4791", pages: [] },
+  }
 ];
 
 // --- Sub-components ---
@@ -776,7 +752,7 @@ const ZineViewer: React.FC<{ zine: Zine, onClose: () => void }> = ({ zine, onClo
                  {/* REMOVED HEADERS HERE */}
                  
                  <p className="font-mono-bold text-xl mb-12 max-w-lg text-[#1A1A1A]">
-                   The interactive version of "{zine.title}" is currently archived. You can view the full issue by downloading the PDF below.
+                   The interactive version of this zine is currently archived. You can view the full issue by downloading the PDF below.
                  </p>
                  {zine.pdfSrc && (
                    <a 
@@ -1044,8 +1020,31 @@ export default function App() {
                       <p>With a background in maker culture and operations, she speaks the language of both the designers and the executives.</p>
                     </div>
                     <div className="mt-12 flex flex-col sm:flex-row gap-6">
-                      <button className="relative flex-1 group" onClick={() => window.alert('Archival Download Initiated')}><div className="absolute inset-0 bg-[#ff4791] translate-x-1 translate-y-1 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" /><div className="relative border-2 border-[#1A1A1A] bg-[#1A1A1A] p-4 flex items-center justify-center gap-2 text-white font-mono-bold uppercase tracking-widest text-sm transition-colors group-hover:bg-[#ff4791]"><Download size={18} /> Download Resume</div></button>
-                      <button className="relative flex-1 group" onClick={() => window.location.href = 'mailto:hello@example.com'}><div className="absolute inset-0 bg-[#1A1A1A] translate-x-1 translate-y-1 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" /><div className="relative border-2 border-[#1A1A1A] bg-[#ff4791] p-4 flex items-center justify-center gap-2 text-white font-mono-bold uppercase tracking-widest text-sm transition-colors group-hover:bg-[#1A1A1A]"><Mail size={18} /> Let's Connect</div></button>
+                      <a 
+                        href="/Arriaga_Bellissima_Resume.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="relative flex-1 group"
+                      >
+                        <div className="absolute inset-0 bg-[#ff4791] translate-x-1 translate-y-1 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" />
+                        <div className="relative border-2 border-[#1A1A1A] bg-[#1A1A1A] p-4 flex items-center justify-center gap-2 text-white font-mono-bold uppercase tracking-widest text-sm transition-colors group-hover:bg-[#ff4791]">
+                          <Download size={18} /> Download Resume
+                        </div>
+                      </a>
+                      <a 
+                        href="https://www.linkedin.com/in/bellissima-arriaga"
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="relative flex-1 group"
+                      >
+                        {/* Shadow Layer */}
+                        <div className="absolute inset-0 bg-[#1A1A1A] translate-x-1 translate-y-1 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" />
+                        
+                        {/* Button Face */}
+                        <div className="relative border-2 border-[#1A1A1A] bg-[#ff4791] p-4 flex items-center justify-center gap-2 text-white font-mono-bold uppercase tracking-widest text-sm transition-colors group-hover:bg-[#1A1A1A]">
+                          <Linkedin size={18} /> Let's Connect
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1099,10 +1098,6 @@ export default function App() {
     </div>
   );
 }
-</file>
-
-<file path="CNAME">
-www.bellissimaarriaga.com
 </file>
 
 <file path="index.html">
