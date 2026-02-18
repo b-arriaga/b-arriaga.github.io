@@ -40,38 +40,39 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
-images/
-  case_studies/
-    bitsy_rats/
-      bitsy_rat_1.JPG
-      bitsy_rat_2.JPG
-      bitsy_rat_3.JPG
-      bitsy_rat_4.png
-    play_mechanisms/
-      play_mechanisms_1.png
-      play_mechanisms_2.png
-      play_mechanisms_3.jpeg
-      play_mechanisms_4.jpeg
-      play_mechanisms_5.png
-    urban_txt/
-      urbantxt_1.jpg
-      urbantxt_2jpeg.jpeg
-      urbantxt_3.jpeg
-      urbantxt_4.jpeg
-      urbantxt_5.png
-      urbantxt_6.jpeg
-      urbantxt_7.jpeg
-  home_pics/
-    bellissima_arriaga_pattillo.JPG
-  zine_covers/
-    zine_cover_1.webp
-    zine_cover_2.webp
-    zine_cover_3.webp
-    zine_cover_4.webp
-    zine_cover_5.webp
-    zine_cover_6.webp
-    zine_cover_7.webp
-    zine_cover_8.webp
+public/
+  images/
+    case_studies/
+      bitsy_rats/
+        bitsy_rat_1.webp
+        bitsy_rat_2.webp
+        bitsy_rat_3.webp
+        bitsy_rat_4.webp
+      play_mechanisms/
+        play_mechanisms_1.webp
+        play_mechanisms_2.webp
+        play_mechanisms_3.webp
+        play_mechanisms_4.webp
+        play_mechanisms_5.webp
+      urban_txt/
+        urbantxt_1.webp
+        urbantxt_2jpeg.webp
+        urbantxt_3.webp
+        urbantxt_4.webp
+        urbantxt_5.webp
+        urbantxt_6.webp
+        urbantxt_7.webp
+    home_pics/
+      bellissima_arriaga_pattillo.webp
+    zine_covers/
+      zine_cover_1.webp
+      zine_cover_2.webp
+      zine_cover_3.webp
+      zine_cover_4.webp
+      zine_cover_5.webp
+      zine_cover_6.webp
+      zine_cover_7.webp
+      zine_cover_8.webp
 zine_drafts/
   vol1_zine.pdf
   vol2_zine.pdf
@@ -84,6 +85,8 @@ zine_drafts/
 .gitignore
 App.tsx
 CNAME
+convert-images.js
+delete-old-images.js
 index.html
 index.tsx
 metadata.json
@@ -99,6 +102,171 @@ This section contains the contents of the repository's files.
 <file path=".gitignore">
 .DS_Store
 .Rhistory
+</file>
+
+<file path="convert-images.js">
+import sharp from 'sharp';
+import { glob } from 'glob';
+import path from 'path';
+import fs from 'fs';
+
+// UPDATED: Now looks inside 'public/images/'
+const files = await glob('public/images/**/*.{png,jpg,jpeg,JPG,JPEG}');
+
+console.log(`Found ${files.length} images to convert in public/images...`);
+
+for (const file of files) {
+  const parsedPath = path.parse(file);
+  // This will save the .webp file in the same folder as the original
+  const outputPath = path.join(parsedPath.dir, `${parsedPath.name}.webp`);
+
+  console.log(`Converting: ${file}`);
+
+  try {
+    await sharp(file)
+      .webp({ quality: 80 }) // 80 is a good balance of quality/size
+      .toFile(outputPath);
+
+    // Optional: Delete the original file after conversion
+    // fs.unlinkSync(file); 
+  } catch (err) {
+    console.error(`Error converting ${file}:`, err);
+  }
+}
+
+console.log('Done! Remember to update your file paths in App.tsx to use the new .webp extensions.');
+</file>
+
+<file path="delete-old-images.js">
+import { glob } from 'glob';
+import fs from 'fs';
+
+// 1. Find all original image formats in public/images
+const files = await glob('public/images/**/*.{png,jpg,jpeg,JPG,JPEG}');
+
+console.log(`Found ${files.length} old images to delete...`);
+
+let deletedCount = 0;
+
+for (const file of files) {
+  try {
+    fs.unlinkSync(file);
+    console.log(`Deleted: ${file}`);
+    deletedCount++;
+  } catch (err) {
+    console.error(`Error deleting ${file}:`, err);
+  }
+}
+
+console.log(`\nCleanup complete! Removed ${deletedCount} files.`);
+console.log('Your folder should now only contain the .webp versions.');
+</file>
+
+<file path="index.tsx">
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error("Could not find root element to mount to");
+}
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+</file>
+
+<file path="metadata.json">
+{
+  "name": "Bellissima Arriaga-Pattillo Portfolio",
+  "description": "A 'Swiss Punk' meets 'Playful Brutalism' creative portfolio for an Inventor Relations Manager in the toy industry, featuring Risograph aesthetics and organized chaos.",
+  "requestFramePermissions": []
+}
+</file>
+
+<file path="README.md">
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
+
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/drive/1wllbIaFuKgw019ej0QgKNDFl_ESJVtG9
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  }
+}
+</file>
+
+<file path="vite.config.ts">
+import path from 'path';
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, '.', '');
+    return {
+      server: {
+        port: 3000,
+        host: '0.0.0.0',
+      },
+      plugins: [react()],
+      define: {
+        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+      },
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '.'),
+        }
+      }
+    };
+});
 </file>
 
 <file path="App.tsx">
@@ -890,32 +1058,6 @@ export default function App() {
 }
 </file>
 
-<file path="index.tsx">
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-</file>
-
-<file path="metadata.json">
-{
-  "name": "Bellissima Arriaga-Pattillo Portfolio",
-  "description": "A 'Swiss Punk' meets 'Playful Brutalism' creative portfolio for an Inventor Relations Manager in the toy industry, featuring Risograph aesthetics and organized chaos.",
-  "requestFramePermissions": []
-}
-</file>
-
 <file path="package.json">
 {
   "name": "bellissima-arriaga-pattillo-portfolio",
@@ -928,10 +1070,12 @@ root.render(
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.4",
+    "framer-motion": "^12.34.0",
+    "glob": "^13.0.5",
     "lucide-react": "^0.564.0",
+    "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "framer-motion": "^12.34.0"
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
@@ -940,87 +1084,6 @@ root.render(
     "vite": "^6.2.0"
   }
 }
-</file>
-
-<file path="README.md">
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1wllbIaFuKgw019ej0QgKNDFl_ESJVtG9
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
-</file>
-
-<file path="tsconfig.json">
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
-}
-</file>
-
-<file path="vite.config.ts">
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
-    return {
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
-      },
-      plugins: [react()],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-      },
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
-        }
-      }
-    };
-});
 </file>
 
 <file path="CNAME">
